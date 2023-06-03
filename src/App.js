@@ -14,7 +14,7 @@ function App() {
     <div> 
       <Form setData={setData} title={title} setTitle={setTitle} desc={desc} setDesc={setDesc} />
       <br />
-      <Notes data={data}/>
+      <Notes data={data} setData={setData} />
     </div>
   );
 }
