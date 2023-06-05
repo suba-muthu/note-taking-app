@@ -9,12 +9,14 @@ function App() {
   const [data, setData] = useState(CardData);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const [editNote, setEditNote] = useState(null);
+  console.log(editNote);
 
   return (
     <div> 
-      <Form setData={setData} title={title} setTitle={setTitle} desc={desc} setDesc={setDesc} />
+      <Form setData={setData} title={title} setTitle={setTitle} desc={desc} setDesc={setDesc} data={data} editNote={editNote} setEditNote={setEditNote}/>
       <br />
-      <Notes data={data} setData={setData} />
+      <Notes data={data} setData={setData} setTitle={setTitle} setDesc={setDesc} setEditNote={setEditNote} />
     </div>
   );
 }

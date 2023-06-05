@@ -5,7 +5,7 @@ import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 
 
-export default function Form({setData, setTitle, title, desc, setDesc}) {
+export default function Form({setData, setTitle, title, desc, setDesc, data, editNote, setEditNote}) {
 
     const handleChange = (e) => {
         if(e.target.id==='title') {
@@ -25,16 +25,28 @@ export default function Form({setData, setTitle, title, desc, setDesc}) {
                 }]
             )
         })
-        // clearData();
+        setTitle("");
+        setDesc("");
     }
 
-    // function clearData() {
-    //     setData([{
-    //         id: null,
-    //         title: "",
-    //         desc: ""
-    //     }])
-    // }
+    const handleUpdate = () => {
+        setData(
+            data.map((item) => {
+                if(item.id === editNote) {
+                    return ({
+                        ...item, 
+                            title: title,
+                            description: desc
+                        })
+                    }
+                return item;
+            })
+        )
+        setTitle("");
+        setDesc("");
+
+        setEditNote(null);
+    }
 
   return (
     <div>
@@ -42,7 +54,7 @@ export default function Form({setData, setTitle, title, desc, setDesc}) {
         <Card sx={{ maxWidth: '40rem', margin: 'auto', mt: 3, padding: 5}}>
         <TextField 
             id='title'
-            label='Title...'
+            // label='Title...'
             variant='outlined'
             value={title}
             onChange={(e) => handleChange(e)}
@@ -51,23 +63,31 @@ export default function Form({setData, setTitle, title, desc, setDesc}) {
         />
         <TextField 
             id='description'
-            label='Description...' 
+            // label='Description...' 
             variant='outlined'
             value={desc}
             onChange={(e) => handleChange(e)}
-            sx={{ width: 500, maxWidth: '100%', ml: 10}}
+            sx={{ width: 500, maxWidth: '100%', ml: 10 }}
             margin= "normal"
 
         />
         <CardActions>
-        <Button 
-            type="submit"
-            variant="contained"
-            onClick={() => handleClick()}
-            sx={{ml: 10}}
-        >
-            Add Note
-        </Button>
+                <Button 
+                    type="submit"
+                    variant="contained"
+                    onClick={() => handleClick()}
+                    sx={{ ml: 10 }}
+                >
+                    Add Note
+                </Button>
+                <Button 
+                    type="submit"
+                    variant="contained"
+                    onClick={() => handleUpdate()}
+                    sx={{ ml: 10 }}
+                >
+                update Note
+            </Button>
         </CardActions>
         </Card>
     </div>

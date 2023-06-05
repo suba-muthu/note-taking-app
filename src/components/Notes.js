@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 
-export default function Notes({data, setData}) {
+export default function Notes({data, setData, setEditNote, setTitle, setDesc}) {
 
   const handleDelete = (id) => {
     const removeNote = data.filter((element) => {
@@ -17,14 +17,25 @@ export default function Notes({data, setData}) {
     setData(removeNote);
   }
 
+  const handleEdit = (id) => {
+    let newItem = data.find((element) => {
+      return element.id === id
+    });
+    
+    setTitle(newItem.title);
+    setDesc(newItem.description);
+    
+    setEditNote(id);
+  }
+
   return (
     <div>
-      <Typography variant='h4' sx={{ ml: 40, mb: 2 }}>Notes</Typography>
+      <Typography variant='h4' sx={{ ml: 45, mb: 2 }}>Notes</Typography>
       {
         data.length === 0 ? 
         <Card sx={{ maxWidth: 400, margin: 'auto' }}>
           <CardContent>
-            <Typography variant="h5" component="div">
+            <Typography variant="h5" component="div" textAlign={'center'}>
               "No notes are available"
             </Typography>
           </CardContent>
@@ -41,8 +52,15 @@ export default function Notes({data, setData}) {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small" variant="contained" sx={{ bgcolor: 'green' }}>Edit</Button>
-              <Button size="small" variant="contained" sx={{ bgcolor: 'red' }} onClick={() => handleDelete(item.id)}>Delete</Button>
+              <Button 
+                size="small" 
+                variant="contained" 
+                color="success" 
+                onClick={() => handleEdit(item.id)}
+              >
+                Edit
+              </Button>
+              <Button size="small" variant="contained" color="error" onClick={() => handleDelete(item.id)}>Delete</Button>
             </CardActions>
             </Card>
           )
