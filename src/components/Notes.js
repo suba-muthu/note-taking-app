@@ -30,19 +30,19 @@ export default function Notes({data, setData, setEditNote, setTitle, setDesc}) {
 
   return (
     <div>
-      <Typography variant='h4' sx={{ ml: 45, mb: 2 }}>Notes</Typography>
+      <Typography variant='h4' sx={{ ml: 45, mb: 2, mt: 2 }}>Notes</Typography>
       {
         data.length === 0 ? 
         <Card sx={{ maxWidth: 400, margin: 'auto' }}>
           <CardContent>
             <Typography variant="h5" component="div" textAlign={'center'}>
-              "No notes are available"
+              No notes are available
             </Typography>
           </CardContent>
         </Card> :
         data.map((item) => {
           return (
-            <Card sx={{ maxWidth: 500, m: 'auto', mb: 5, height: '200%' }}>
+            <Card sx={{ maxWidth: 300, m: 'auto', mb: 5, height: '200%' }}>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {item.title}

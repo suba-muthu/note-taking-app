@@ -14,6 +14,7 @@ export default function Form({setData, setTitle, title, desc, setDesc, data, edi
             setDesc(e.target.value);
         }
     }
+        
 
     const handleClick = () => {
         setData((item) => {
@@ -54,22 +55,22 @@ export default function Form({setData, setTitle, title, desc, setDesc, data, edi
         <Card sx={{ maxWidth: '40rem', margin: 'auto', mt: 3, padding: 5}}>
         <TextField 
             id='title'
-            // label='Title...'
+            label='Enter Your Title...'
             variant='outlined'
             value={title}
             onChange={(e) => handleChange(e)}
             sx={{ width: 500, maxWidth: '100%', ml: 10}}
             margin= "normal"
+            // inputProps={{ maxlength: 10 }}
         />
-        <TextField 
+        <TextField  
             id='description'
-            // label='Description...' 
+            label='Enter Your Description...' 
             variant='outlined'
             value={desc}
             onChange={(e) => handleChange(e)}
             sx={{ width: 500, maxWidth: '100%', ml: 10 }}
             margin= "normal"
-
         />
         <CardActions>
                 <Button 
